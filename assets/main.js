@@ -115,8 +115,8 @@ var campsPoints = L.geoJson(null, {
     },
     onEachFeature: function(feature, layer) {
         if (feature.properties) {
-            var name = feature.properties.name ? '<b>name: </b>' + feature.properties.name + '</br>' : '';
-            var comment = feature.properties.comment ? '<b>comment: </b>' + feature.properties.comment : '';
+            var name = feature.properties.name ? 'Ночевка: ' + feature.properties.name + '</br>' : '';
+            var comment = feature.properties.comment ? feature.properties.comment : '';
             var content = name + comment;
             layer.bindPopup(content);
         };
@@ -127,13 +127,13 @@ $.getJSON("data/camps.geojson", function(data) {
 });
 
 var trackColor = {
-    "1": "#fd9a00",
-    "2": "#ffff00",
-    "3": "#ff3135",
-    "4": "#9ace00",
-    "5": "#6e6e6e",
-    "6": "#009b2e",
-    "7": "#ce06cb"
+    "1": "#ffff00",
+    "2": "#3f7f00",
+    "3": "#1653f8",
+    "4": "#ec366d",
+    "5": "#e80549",
+    "6": "#e80549",
+    "7": "#7f67cb"
 };
 
 var layerGPSTrack = L.geoJson(null, {
@@ -146,8 +146,8 @@ var layerGPSTrack = L.geoJson(null, {
     },
     onEachFeature: function(feature, layer) {
         if (feature.properties) {
-            var part = feature.properties.part ? '<b>part: </b>' + feature.properties.part + '</br>' : '';
-            var length = feature.properties.length ? '<b>length: </b>' + feature.properties.length + ' km' : '';
+            var part = feature.properties.part ? 'Часть: ' + feature.properties.part + '</br>' : '';
+            var length = feature.properties.length ? 'Путь: ' + feature.properties.length + ' км' : '';
             var content = part + length;
             layer.bindPopup(content);
         };
