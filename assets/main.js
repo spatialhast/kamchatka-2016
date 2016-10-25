@@ -129,7 +129,7 @@ $.getJSON("data/camps.geojson", function(data) {
 var trackColor = {
     "1": "#ffff00",
     "2": "#3f7f00",
-    "3": "#1653f8",
+    "3": "#29aaf4",
     "4": "#ec366d",
     "5": "#e80549",
     "6": "#e80549",
