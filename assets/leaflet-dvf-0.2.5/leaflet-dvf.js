@@ -6361,7 +6361,7 @@ L.PanoramioLayer = L.PanoramioLayer.extend({
 		}
 
 		var request = this.requestJsonp(
-			'http://www.panoramio.com/map/get_panoramas.php',
+			'https://www.panoramio.com/map/get_panoramas.php',
 			{
 				set: this.options.photoSet,
 				from: me._from,
