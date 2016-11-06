@@ -62,31 +62,6 @@ var layerTopo1000 = new L.tileLayer('http://{s}.tiles.nakarte.tk/topo1000/{z}/{x
     attribution: 'Tiles: &copy; <a href="http://nakarte.tk/" target="_blank">nakarte.tk</a>'
 });
 
-
-
-var index = 0;
-var layerPanoramio = new L.PanoramioLayer({
-    photoSet: 'full',
-    onEachPhoto: function(layer, photo) {
-        var uploaded = photo['upload_date'];
-        var url = photo['photo_file_url'];
-        var startMoment = moment(uploaded, 'DD MMM YYYY');
-        var start = startMoment.toDate();
-        var photoItem = {
-            start: start,
-            content: '<img class="photo" title="' + photo['photo_title'] + '" onload="this.style.opacity=1" src="' + url + '" height="64" data-id="' + index + '"/>',
-            className: 'photo-item'
-        };
-        clickToCenter = function(record) {
-            map.setView([record.latitude, record.longitude], map.getZoom());
-        };
-        index++;
-    },
-    refreshEvents: 'viewreset'
-});
-
-
-
 var map = new L.Map('map', {
     layers: [layerTopomapper]
 });
@@ -97,8 +72,6 @@ map.setView([54.620, 159.571], 8);
 new L.Hash(map);
 
 L.control.scale().addTo(map);
-
-
 
 var campsPoints = L.geoJson(null, {
     pointToLayer: function(feature, latlng) {
@@ -115,9 +88,10 @@ var campsPoints = L.geoJson(null, {
     },
     onEachFeature: function(feature, layer) {
         if (feature.properties) {
-            var name = feature.properties.name ? 'Ночевка: ' + feature.properties.name + '</br>' : '';
-            var comment = feature.properties.comment ? feature.properties.comment : '';
-            var content = name + comment;
+            var name = '<b>' + feature.properties.name + '</b>' ? '<b>' + feature.properties.name + '</b>' + '</br>' : '';
+            var nights = feature.properties.nights ? 'Ночевка: ' + feature.properties.nights + '</br>' : '';
+            var comment = feature.properties.cmnt ? feature.properties.cmnt : '';
+            var content = name + nights + comment;
             layer.bindPopup(content);
         };
     }
@@ -189,8 +163,7 @@ var baseLayer = {
 var overlayLayer = {
     "Camps": campsPoints,
     "GPS track": layerGPSTrack,
-    "Topo 1km": layerTopo1000,
-    "<img src='img/panoramio.png' width='17' height='17'>&nbsp;Panoramio": layerPanoramio
+    "Topo 1km": layerTopo1000
 };
 
 L.control.layers(baseLayer, overlayLayer, {
