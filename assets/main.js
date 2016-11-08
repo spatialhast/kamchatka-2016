@@ -58,7 +58,9 @@ var layerTopo1000 = new L.tileLayer('http://{s}.tiles.nakarte.tk/topo1000/{z}/{x
 });
 
 var map = new L.Map('map', {
-    layers: [layerTopomapper]
+    layers: [layerTopomapper],
+    center: [54.710,159.740],
+    zoom: 8
 });
 
 map.attributionControl.addAttribution('Icons &copy; <a href="https://mapicons.mapsmarker.com/">Map Icons Collection</a>');
@@ -157,7 +159,7 @@ var layerGPSTrack = L.geoJson(null, {
 });
 $.getJSON("data/track.geojson", function (data) {
     layerGPSTrack.addData(data);
-    map.fitBounds(layerGPSTrack.getBounds());
+    //map.fitBounds(layerGPSTrack.getBounds());
 });
 
 var dashArrayTypeRadial = { "пунктир": "4,6", "": null };
