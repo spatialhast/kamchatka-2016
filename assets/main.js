@@ -1,4 +1,4 @@
-var layerTopomapper = new L.tileLayer('http://144.76.234.107/cgi-bin/ta/tilecache.py/1.0.0/topomapper_v2/{z}/{x}/{y}.jpg', {
+var layerTopomapper = new L.tileLayer('http://144.76.234.108/cgi-bin/tapp/tilecache.py/1.0.0/topomapper_v2/{z}/{x}/{y}.jpg', {
     maxNativeZoom: 13,
     attribution: 'Tiles: &copy; <a href="http://nakarte.tk/" target="_blank">nakarte.tk</a>'
 });
